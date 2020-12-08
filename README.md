@@ -1,5 +1,5 @@
 # National Park Finder
 
-## All The Information You Need to Know About Your Favorite National Park in One Easy to Use App, You Can Narrow Down Your Search by State And Activities. Once your park(s) are located, you can see more pictures and/or youtube videos for that particular park. Enjoy..
+## All the information you need to know about your favorite national park in one easy to use app. You can narrow down your search by state and activities. Once your park(s) are located, you can see more pictures and/or youtube videos for that particular park. enjoy..
 
 
