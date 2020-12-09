@@ -11,6 +11,22 @@ function formatParkInfoQueryParams(params) {
 
 
 /*** 
+ * FUNC:: buildMorePictureElement
+ */
+function buildMorePictureElement(imagePtr) {
+  let htmlCode = `
+		<div class="item">
+		<h4 class="overlay-title-container"> ${imagePtr.title}</h4>
+        <img src="${imagePtr.url}" alt="">
+		<h4>${imagePtr.caption}</h4>
+
+            <button class="btn-go-back 0" type="button">Go Back</button>
+    </div>`;
+
+  return (htmlCode);
+}
+
+/*** 
  * FUNC:: buildParkInfoItemElement
  */
 function buildParkInfoItemElement(responseJson, idx) {
@@ -41,29 +57,7 @@ function buildParkInfoItemElement(responseJson, idx) {
 		</div>`;
   return (htmlCode);
 }
-/*
-    <div class="group-container">
-          <div class="item">
-      </div>
-      </div>
 
-*/
-
-/*** 
- * FUNC:: buildMorePictureElement
- */
-function buildMorePictureElement(imagePtr) {
-  let htmlCode = `
-		<div class="item">
-		<h4 class="overlay-title-container"> ${imagePtr.title}</h4>
-        <img src="${imagePtr.url}" alt="">
-		<h4>${imagePtr.caption}</h4>
-
-            <button class="btn-go-back 0" type="button">Go Back</button>
-    </div>`;
-
-  return (htmlCode);
-}
 
 /*****
  * FUNC:: displayParksInfo
@@ -98,17 +92,13 @@ There Are <em>${dataLen}</em> Parks That Matches Your Search Criteria<br>
   EntryData.ResponseJson = responseJson;
 
   // close the group-container div
-
   // page for park info
   htmlCode += `</div>`;
 
-
   $('#js-results').append(htmlCode);
-
   $('#js-results').removeClass('hidden');
 
 }
-
 
 
 /*****
@@ -134,55 +124,13 @@ There are <em>${imageLen}</em> Pictures for <em>${responseJson.fullName}</em>, E
   {
     htmlCode = htmlCode + buildMorePictureElement(responseJson.images[idx]);
   }
-
   // close the group-container div
   htmlCode += `</div>`;
-
-  // page for more picture info
-
   $('#js-results').append(htmlCode);
-
   $('#js-results').removeClass('hidden');
 
 }
 
-/*** 
- * FUNC:: getVideoInfo
- * json would have the park info
- */
-function getVideoInfos(parkName) {
-
-  const api_key = "youtube-key";
-  const searchURL = `https://www.googleapis.com/youtube/v3/search`;
-  const searchString = parkName.replace(/ /g, "+");
-  let maxResults = 6; // don't get too many
-
-  // for youtbue.
-  const params = {
-    key: api_key,
-    q: searchString,
-    part: "snippet",
-    maxResults: maxResults
-  };
-
-  const queryString = formatParkInfoQueryParams(params)
-  let videoURL = searchURL + '?' + queryString;
-
-  fetch(videoURL)
-    .then(response => {
-      if (response.ok)
-      {
-        return response.json();
-      }
-      let errmsg = `${response.status} : ${response.statusText}`;
-      throw new Error(errmsg);
-    })
-
-    .then(responseJson => displayParkVideoList(responseJson, parkName))
-    .catch(err => {
-      $('#js-error-message').text(`Something went wrong, ErrorMsg/ErrorCode : ${err.message}`);
-    });
-}
 
 /*****
  * FUNC:: displayParkVideoList
@@ -228,14 +176,30 @@ function displayParkVideoList(responseJson, parkName) {
   // close the group-container div
   htmlCode += `
 </div>`;
-  // page for more picture info
-
+  // create page for more picture 
   $('#js-results').append(htmlCode);
-
   $('#js-results').removeClass('hidden');
 
 }
 
+/*** 
+ * FUNC:: generateItemElement
+ */
+function generateItemElement(item) {
+
+  return `
+    <li data-item-id="${item.id}">
+      <span class="shopping-item js-shopping-item ${item.checked ? "shopping-item__checked" : ''}">${item.name}</span>
+      <div class="shopping-item-controls">
+        <button class="shopping-item-toggle js-item-toggle">
+            <span class="button-label">check</span>
+        </button>
+        <button class="shopping-item-delete js-item-delete">
+            <span class="button-label">delete</span>
+        </button>
+      </div>
+    </li>`;
+}
 
 /*** 
  * FUNC:: getParkInfos
@@ -286,24 +250,41 @@ function getParkInfos(stateCode, activities, maxResults = 3) {
 
 
 /*** 
- * FUNC:: generateItemElement
+ * FUNC:: getVideoInfo
+ * json would have the park info
  */
-function generateItemElement(item) {
+function getVideoInfos(parkName) {
+	const api_key = "AIzaSyBGEUctjgxxWPlw7PsY4TaLe01zwsGg3p0";
+  const searchURL = `https://www.googleapis.com/youtube/v3/search`;
+  const searchString = parkName.replace(/ /g, "+");
+  let maxResults = 6; // don't get too many
 
-  return `
-    <li data-item-id="${item.id}">
-      <span class="shopping-item js-shopping-item ${item.checked ? "shopping-item__checked" : ''}">${item.name}</span>
-      <div class="shopping-item-controls">
-        <button class="shopping-item-toggle js-item-toggle">
-            <span class="button-label">check</span>
-        </button>
-        <button class="shopping-item-delete js-item-delete">
-            <span class="button-label">delete</span>
-        </button>
-      </div>
-    </li>`;
+  // for youtbue.
+  const params = {
+    key: api_key,
+    q: searchString,
+    part: "snippet",
+    maxResults: maxResults
+  };
+
+  const queryString = formatParkInfoQueryParams(params)
+  let videoURL = searchURL + '?' + queryString;
+
+  fetch(videoURL)
+    .then(response => {
+      if (response.ok)
+      {
+        return response.json();
+      }
+      let errmsg = `${response.status} : ${response.statusText}`;
+      throw new Error(errmsg);
+    })
+
+    .then(responseJson => displayParkVideoList(responseJson, parkName))
+    .catch(err => {
+      $('#js-error-message').text(`Something went wrong, ErrorMsg/ErrorCode : ${err.message}`);
+    });
 }
-
 
 /*** 
  * FUNC:: getItemIdFromElement
@@ -311,16 +292,6 @@ function generateItemElement(item) {
 function getItemIdFromElement(item) {
   return (item.classList[1]);
 }
-
-/*** 
- * FUNC:: handleGoBackButtonClicked
- */
-function handleGoBackButtonClicked() {
-  $('.cls-results').on('click', '.btn-go-back', event => {
-    displayParksInfo(EntryData.ResponseJson, EntryData.stateCode, EntryData.activities);
-  });
-}
-
 
 /***
  * FUNC:: handleMorePictureClicked
@@ -331,6 +302,15 @@ function handleMorePictureClicked() {
     // get the image from the store and ren
     let responseJson = NewData[idx].responseJson;
     displayMorePicture(responseJson);
+  });
+}
+
+/*** 
+ * FUNC:: handleGoBackButtonClicked
+ */
+function handleGoBackButtonClicked() {
+  $('.cls-results').on('click', '.btn-go-back', event => {
+    displayParksInfo(EntryData.ResponseJson, EntryData.stateCode, EntryData.activities);
   });
 }
 
@@ -363,9 +343,6 @@ function watchForm() {
     let activities = $('#js-activities').val();
     const zipCode = $('#zip-code').val();
     const maxResults = 20;
-
-    //    const maxResults = $('#js-max-results').val();	
-
     getParkInfos(stateCode, activities, maxResults);
   });
 
@@ -386,7 +363,6 @@ function StartApp() {
   handleMorePictureClicked();
   handleGoBackButtonClicked();
   handleVideoClicked();
-
 
   getParkInfos(stateCode, activities, maxResults);
   watchForm();

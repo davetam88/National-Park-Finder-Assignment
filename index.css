@@ -1,5 +1,3 @@
-/*** body and some common stuffs */
-
 * {
   box-sizing: border-box;
 }
@@ -46,7 +44,6 @@ em {
 }
 
 /*** header */
-
 header {
   background-color: lightblue;
   border: 0px solid red;
@@ -84,7 +81,6 @@ section h3 {
 }
 
 /*** input box stuff */
-
 label {
   display: inline-block;
   min-width: 200px;
