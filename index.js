@@ -342,7 +342,7 @@ function watchForm() {
     let stateCode = $('#js-state-name').val();
     let activities = $('#js-activities').val();
     const zipCode = $('#zip-code').val();
-    const maxResults = 20;
+    const maxResults = 30;
     getParkInfos(stateCode, activities, maxResults);
   });
 
