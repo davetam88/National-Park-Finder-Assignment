@@ -355,6 +355,7 @@ function watchForm() {
 function StartApp() {
   const stateCode = "AL";
   const activities = "All";
+  // const activities = "Bike";
 
   EntryData.stateCode = stateCode;
   EntryData.activities = activities;

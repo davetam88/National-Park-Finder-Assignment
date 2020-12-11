@@ -43,6 +43,7 @@ em {
 }
 
 /*** header */
+
 header {
   background-color: lightblue;
   border: 0px solid red;
@@ -58,10 +59,16 @@ header h1 {
 }
 
 header h2 {
-  color: coral;
-  color: #ea2626;
-  text-align: center;
-  margin: 20px;
+  color: #272a38;
+  margin: 20px 10vh;
+  font-size: 25px;
+  border: 0px solid green;
+}
+
+
+.filter-title {
+  color: #403131;
+  margin: 10px 0;
   font-size: 25px;
   border: 0px solid green;
 }
@@ -74,6 +81,7 @@ h3 header {
   border: 0px solid green;
 }
 
+
 section h3 {
   color: green;
   text-align: center;
@@ -81,6 +89,7 @@ section h3 {
 }
 
 /*** input box stuff */
+
 label {
   display: inline-block;
   min-width: 200px;
@@ -139,13 +148,10 @@ select {
 /*** main and section  */
 
 main {
-  background-color: lightgray;
+  background-color: #f1eded;
 }
 
 /*** heading  for main, more pic and videos */
-.app-title {
-margin:
-}
 
 .overlay-section-heading {
   color: #348710;
@@ -162,6 +168,7 @@ margin:
   font-size: 20px;
   color: green;
 }
+
 /*** group flex  */
 
 .group-container {
@@ -199,16 +206,28 @@ margin:
   .item {
     flex-basis: 100%;
   }
+  header h2 {
+    margin: 20px 50vh;
+    border: 1px solid yellow;
+  }
 }
 
 @media (min-width: 700px) {
   .item {
     flex-basis: 50%;
   }
+  header h2 {
+    margin: 20px 50vh;
+    border: 1px solid red;
+  }
 }
 
 @media (min-width: 1050px) {
   .item {
     flex-basis: 33%;
+  }
+  header h2 {
+    margin: 20px 50vh;
+    border: 1px solid green;
   }
 }
