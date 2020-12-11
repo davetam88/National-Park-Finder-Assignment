@@ -39,8 +39,7 @@ a:hover {
 }
 
 em {
-  color: #FF00FF;
-  /***Fuchsia */
+  color: #7100ff;
 }
 
 /*** header */
@@ -60,6 +59,7 @@ header h1 {
 
 header h2 {
   color: coral;
+  color: #ea2626;
   text-align: center;
   margin: 20px;
   font-size: 25px;
@@ -143,9 +143,12 @@ main {
 }
 
 /*** heading  for main, more pic and videos */
+.app-title {
+margin:
+}
 
 .overlay-section-heading {
-  color: salmon;
+  color: #348710;
   border: 0px solid green;
   padding-top: 20px;
   padding-bottom: 20px;
