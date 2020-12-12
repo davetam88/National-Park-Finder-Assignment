@@ -45,6 +45,8 @@ em {
 /*** header */
 
 header {
+  background-image: url(mountains5.jpg);
+  background-size: cover;
   background-color: lightblue;
   border: 0px solid red;
 }
@@ -80,7 +82,6 @@ h3 header {
   font-size: 25px;
   border: 0px solid green;
 }
-
 
 section h3 {
   color: green;
@@ -202,13 +203,14 @@ main {
 
 /*** media  query */
 
+
 @media (min-width: 400px) {
   .item {
     flex-basis: 100%;
   }
   header h2 {
-    margin: 20px 50vh;
-    border: 1px solid yellow;
+    margin: 20px 5%;
+    /* border: 1px solid yellow; */
   }
 }
 
@@ -217,8 +219,8 @@ main {
     flex-basis: 50%;
   }
   header h2 {
-    margin: 20px 50vh;
-    border: 1px solid red;
+    margin: 20px 10%;
+    /* border: 1px solid red; */
   }
 }
 
@@ -227,7 +229,7 @@ main {
     flex-basis: 33%;
   }
   header h2 {
-    margin: 20px 50vh;
-    border: 1px solid green;
+    margin: 20px 20%;
+    /* border: 1px solid green; */
   }
 }
