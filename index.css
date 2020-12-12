@@ -45,10 +45,11 @@ em {
 /*** header */
 
 header {
-  background-image: url(mountains5.jpg);
+  background-image: url(images/mountains5.jpg);
   background-size: cover;
   background-color: lightblue;
   border: 0px solid red;
+  /* background-size: 100% 100%; */
 }
 
 header h1 {
@@ -61,15 +62,16 @@ header h1 {
 }
 
 header h2 {
-  color: #272a38;
-  margin: 20px 10vh;
+  color: black;
+  color: #e60e0e;
+   margin: 20px 4%;
   font-size: 25px;
   border: 0px solid green;
 }
 
-
 .filter-title {
-  color: #403131;
+  /* light green  */
+  color: #bbe2c0;
   margin: 10px 0;
   font-size: 25px;
   border: 0px solid green;
@@ -202,7 +204,6 @@ main {
 }
 
 /*** media  query */
-
 
 @media (min-width: 400px) {
   .item {
