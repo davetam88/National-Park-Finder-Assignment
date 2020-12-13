@@ -13,11 +13,12 @@ function formatParkInfoQueryParams(params) {
 /*** 
  * FUNC:: buildMorePictureElement
  */
-function buildMorePictureElement(imagePtr) {
+function buildMorePictureElement(imagePtr)
+{
   let htmlCode = `
 		<div class="item">
 		<h4 class="overlay-title-container"> ${imagePtr.title}</h4>
-        <img src="${imagePtr.url}" alt="">
+        <img src="${imagePtr.url}" alt="${imagePtr.title}">
 		<h4>${imagePtr.caption}</h4>
 
             <button class="btn-go-back 0" type="button">Go Back</button>
@@ -26,10 +27,15 @@ function buildMorePictureElement(imagePtr) {
   return (htmlCode);
 }
 
+
 /*** 
  * FUNC:: buildParkInfoItemElement
  */
-function buildParkInfoItemElement(responseJson, idx) {
+function buildParkInfoItemElement(responseJson, idx)
+{
+  console.log('responseJson', responseJson); // dbg..
+
+  console.log('idx', idx); // dbg..
 
   let siteAddress = "";
 
@@ -42,13 +48,14 @@ function buildParkInfoItemElement(responseJson, idx) {
 	  ${responseJson.data[idx].addresses[0].city},  ${responseJson.data[idx].addresses[0].stateCode} ${responseJson.data[idx].addresses[0].postalCode} 
 	  `;
   }
-
+  let fullName = responseJson.data[idx].fullName;
+  // console.log('fullName', fullName); // dbg..
   let htmlCode = `
 		<div class="item">
 	  <div class="park-info-title-container">
       <h3>${responseJson.data[idx].fullName}</h3>
 							  </div>
-		<img src="${responseJson.data[idx].images[0].url}" alt="">
+		<img src="${responseJson.data[idx].images[0].url}" alt="${fullName}">
       <p>${responseJson.data[idx].description}</p>
 	  <p><b>WebLink</b> : <a href="${responseJson.data[idx].url}"> ${responseJson.data[idx].fullName}</a>
       <p><b>HQ Address</b> : ${siteAddress}</p>
@@ -57,6 +64,7 @@ function buildParkInfoItemElement(responseJson, idx) {
 		</div>`;
   return (htmlCode);
 }
+
 
 
 /*****
@@ -254,7 +262,7 @@ function getParkInfos(stateCode, activities, maxResults = 3) {
  * json would have the park info
  */
 function getVideoInfos(parkName) {
-	const api_key = "AIzaSyBGEUctjgxxWPlw7PsY4TaLe01zwsGg3p0";
+  const api_key = "AIzaSyBGEUctjgxxWPlw7PsY4TaLe01zwsGg3p0";
   const searchURL = `https://www.googleapis.com/youtube/v3/search`;
   const searchString = parkName.replace(/ /g, "+");
   let maxResults = 6; // don't get too many
