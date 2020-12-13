@@ -32,11 +32,11 @@ Overall look of the Startup Page
 
 Startup Page With Activities Selection Filter
 
-![Start UP Page with Activities Filter](images\startup-page-activity-option.jpg)
+![Start UP Page with Activities Filter](images/startup-page-activity-option.jpg)
 
 Resulting Page when 'Biking' is the chosen activity
 
-![Bike Page](images\startup-page-bike.jpg)
+![Bike Page](images/startup-page-bike.jpg)
 
 Resulting Page when the 'More Picture' button is selected
 
