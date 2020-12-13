@@ -1,8 +1,5 @@
 'use strict';
 
-/*** 
- * FUNC:: formatParkInfoQueryParams
- */
 function formatParkInfoQueryParams(params) {
   const queryItems = Object.keys(params)
     .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
@@ -10,9 +7,6 @@ function formatParkInfoQueryParams(params) {
 }
 
 
-/*** 
- * FUNC:: buildMorePictureElement
- */
 function buildMorePictureElement(imagePtr)
 {
   let htmlCode = `
@@ -28,15 +22,8 @@ function buildMorePictureElement(imagePtr)
 }
 
 
-/*** 
- * FUNC:: buildParkInfoItemElement
- */
 function buildParkInfoItemElement(responseJson, idx)
 {
-  console.log('responseJson', responseJson); // dbg..
-
-  console.log('idx', idx); // dbg..
-
   let siteAddress = "";
 
   if (responseJson.data[idx].addresses.length === 0)
@@ -49,27 +36,24 @@ function buildParkInfoItemElement(responseJson, idx)
 	  `;
   }
   let fullName = responseJson.data[idx].fullName;
-  // console.log('fullName', fullName); // dbg..
   let htmlCode = `
-		<div class="item">
-	  <div class="park-info-title-container">
+  <div class="item">
+    <div class="park-info-title-container">
       <h3>${responseJson.data[idx].fullName}</h3>
-							  </div>
-		<img src="${responseJson.data[idx].images[0].url}" alt="${fullName}">
+    </div>
+    <img src="${responseJson.data[idx].images[0].url}" alt="${fullName}">
       <p>${responseJson.data[idx].description}</p>
-	  <p><b>WebLink</b> : <a href="${responseJson.data[idx].url}"> ${responseJson.data[idx].fullName}</a>
-      <p><b>HQ Address</b> : ${siteAddress}</p>
-						<button class="btn-more-pic ${idx}" type="button">More Picture</button>
-						<button class="btn-video ${idx}" type="button">Video</button>
-		</div>`;
+      <p><b>WebLink</b> : <a href="${responseJson.data[idx].url}"> ${responseJson.data[idx].fullName}</a>
+        <p><b>HQ Address</b> : ${siteAddress}</p>
+        <button class="btn-more-pic ${idx}" type="button">More Picture</button>
+        <button class="btn-video ${idx}" type="button">Video</button>
+  </div>`;
+    
   return (htmlCode);
 }
 
 
 
-/*****
- * FUNC:: displayParksInfo
- */
 function displayParksInfo(responseJson, stateCode, activities) {
 
 
@@ -109,9 +93,6 @@ There Are <em>${dataLen}</em> Parks That Matches Your Search Criteria<br>
 }
 
 
-/*****
- * FUNC:: displayMorePicture
- */
 function displayMorePicture(responseJson) {
 
   // if there are previous results, remove them
@@ -140,9 +121,6 @@ There are <em>${imageLen}</em> Pictures for <em>${responseJson.fullName}</em>, E
 }
 
 
-/*****
- * FUNC:: displayParkVideoList
- */
 function displayParkVideoList(responseJson, parkName) {
 
   // if there are previous results, remove them
@@ -190,9 +168,6 @@ function displayParkVideoList(responseJson, parkName) {
 
 }
 
-/*** 
- * FUNC:: generateItemElement
- */
 function generateItemElement(item) {
 
   return `
@@ -209,9 +184,6 @@ function generateItemElement(item) {
     </li>`;
 }
 
-/*** 
- * FUNC:: getParkInfos
- */
 function getParkInfos(stateCode, activities, maxResults = 3) {
 
   const api_key = 'nC3wQoBberQTpH9oGy9RZd3WPZRbbUw3eTCblSCb';
@@ -257,10 +229,6 @@ function getParkInfos(stateCode, activities, maxResults = 3) {
 }
 
 
-/*** 
- * FUNC:: getVideoInfo
- * json would have the park info
- */
 function getVideoInfos(parkName) {
   const api_key = "AIzaSyBGEUctjgxxWPlw7PsY4TaLe01zwsGg3p0";
   const searchURL = `https://www.googleapis.com/youtube/v3/search`;
@@ -294,16 +262,10 @@ function getVideoInfos(parkName) {
     });
 }
 
-/*** 
- * FUNC:: getItemIdFromElement
- */
 function getItemIdFromElement(item) {
   return (item.classList[1]);
 }
 
-/***
- * FUNC:: handleMorePictureClicked
- */
 function handleMorePictureClicked() {
   $('.cls-results').on('click', '.btn-more-pic', event => {
     const idx = getItemIdFromElement(event.currentTarget);
@@ -313,18 +275,12 @@ function handleMorePictureClicked() {
   });
 }
 
-/*** 
- * FUNC:: handleGoBackButtonClicked
- */
 function handleGoBackButtonClicked() {
   $('.cls-results').on('click', '.btn-go-back', event => {
     displayParksInfo(EntryData.ResponseJson, EntryData.stateCode, EntryData.activities);
   });
 }
 
-/***
- * FUNC:: handleVideoClicked
- */
 function handleVideoClicked() {
   $('.cls-results').on('click', '.btn-video', event => {
     const idx = getItemIdFromElement(event.currentTarget);
@@ -340,9 +296,6 @@ const NewData = {};
 const EntryData = {};
 // var..
 
-/*** 
- * FUNC:: watchForm
- */
 function watchForm() {
   $('#js-form').submit(event => {
     event.preventDefault();
@@ -357,9 +310,6 @@ function watchForm() {
 }
 
 
-/*** 
- * FUNC:: StartApp
- */
 function StartApp() {
   const stateCode = "AL";
   const activities = "All";
