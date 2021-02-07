@@ -59,12 +59,11 @@ Resulting Page when the 'Video' button is selected
 
 ## Live Demo link, Code link, and User-Flow Diagram
 
-- [Live Demo Link](https://davetam88.github.io/national-park-finder/)
+- [Live Demo Link](https://davetam88.github.io/National-Park-Finder-Assignment/)
 
-- [GitHub Code Link](https://github.com/davetam88/national-park-finder/)
+- [GitHub Code Link](https://github.com/davetam88/National-Park-Finder-Assignment/)
 
 - [User-Flow Diagram](images/user-flow.jpg)
-
 
 
 
